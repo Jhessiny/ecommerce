@@ -1,6 +1,7 @@
 import { GlobalStyle } from "./styles/global";
 import ProductList from "./components/ProductList";
 import Header from "./components/Header";
+import Cart from "./components/Cart";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div className="container">
         <main>
           <ProductList />
+          <Cart />
         </main>
       </div>
     </div>

@@ -10,15 +10,10 @@ html{
     font-size: 65.5%;
     font-family: Arial, Helvetica, sans-serif;
     .container{
-    max-width: 110rem;
+    max-width: 100rem;
     margin: 0 auto;
     }
-    .products-list{
-        display: flex;
-        width: 60%;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
+   
     header{
         background-color: #ccc;
         display: flex;
@@ -47,6 +42,15 @@ html{
     }
     main{
         margin-top: 6rem;
+        display: flex;
+        justify-content: space-between;
+        .products-list{
+        display: flex;
+        width: 60%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        }   
+       
     }
 }
 
