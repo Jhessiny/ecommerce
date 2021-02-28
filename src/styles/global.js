@@ -19,6 +19,35 @@ html{
         flex-wrap: wrap;
         justify-content: space-between;
     }
+    header{
+        background-color: #ccc;
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5rem 3rem;
+        font-size: 1.4rem;
+        font-weight: bold;
+        .header__brand{
+            font-size: 3rem;
+        }
+        a{
+            color: #333;
+            text-decoration: none;
+        }
+        .header__user-box{
+            display: flex;
+            align-items: center;
+            .header__user-box__img{
+                background-color: #555;
+                height: 3rem;
+                width: 3rem;
+                border-radius: 100%;
+                margin-right: 1rem;
+            }
+        }
+    }
+    main{
+        margin-top: 6rem;
+    }
 }
 
 `;
