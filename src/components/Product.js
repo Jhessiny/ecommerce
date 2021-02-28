@@ -1,6 +1,6 @@
 import { ProductCard } from "../styles/ProductCard";
 
-const Product = ({ name, price, available }) => {
+const Product = ({ name, price, available, addItemToCart, id }) => {
   return (
     <ProductCard>
       <div className="product-card__img"></div>
@@ -10,7 +10,9 @@ const Product = ({ name, price, available }) => {
           R$ {price} <span>- {available} left</span>
         </p>
       </div>
-      <div className="product-card__button">Buy</div>
+      <div onClick={() => addItemToCart(id)} className="product-card__button">
+        Buy
+      </div>
     </ProductCard>
   );
 };

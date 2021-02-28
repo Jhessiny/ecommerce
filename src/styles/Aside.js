@@ -116,5 +116,9 @@ export const CartAside = styled.div`
     font-size: 1.5rem;
     text-transform: uppercase;
     margin-top: 2rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #222;
+    }
   }
 `;

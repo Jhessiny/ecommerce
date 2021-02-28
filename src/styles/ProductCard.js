@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ProductCard = styled.div`
   width: 16rem;
-  height: 24rem;
+  height: 22rem;
   font-size: 1.3rem;
   color: #333;
   border-radius: 0.8rem;
