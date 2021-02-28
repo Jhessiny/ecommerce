@@ -1,13 +1,13 @@
 import { ProductCard } from "../styles/ProductCard";
 
-const Product = () => {
+const Product = ({ name, price, available }) => {
   return (
     <ProductCard>
       <div className="product-card__img"></div>
       <div className="product-card__info">
-        <p className="product-card__info__title">Product Name</p>
+        <p className="product-card__info__title">{name}</p>
         <p>
-          R$ 30,00 <span>- 2 left</span>
+          R$ {price} <span>- {available} left</span>
         </p>
       </div>
       <div className="product-card__button">Buy</div>

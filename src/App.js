@@ -5,7 +5,9 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <ProductList />
+      <div className="container">
+        <ProductList />
+      </div>
     </div>
   );
 }

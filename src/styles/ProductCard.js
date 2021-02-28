@@ -5,10 +5,11 @@ export const ProductCard = styled.div`
   height: 22rem;
   font-size: 1.3rem;
   color: #333;
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   overflow: hidden;
-  background-color: #ddd;
+  background-color: #eee;
   position: relative;
+
   .product-card__img {
     width: 100%auto;
     height: 11rem;
@@ -26,12 +27,16 @@ export const ProductCard = styled.div`
   .product-card__button {
     background-color: #444;
     color: #eee;
-    padding: 1rem;
+    padding: 1.2rem;
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      background-color: #222;
+    }
   }
 `;
