@@ -1,4 +1,4 @@
-const CartItem = ({ item, increaseItem, decreaseItem }) => {
+const CartItem = ({ item, increaseItem, decreaseItem, available }) => {
   return (
     <div className="cart-item">
       <div className="cart-item__img"></div>
@@ -11,7 +11,12 @@ const CartItem = ({ item, increaseItem, decreaseItem }) => {
           </div>
         </div>
         <div className="cart-item_controls">
-          <button onClick={() => increaseItem(item.id)}>+</button>
+          <button
+            onClick={() => increaseItem(item.id)}
+            disabled={available < 1}
+          >
+            +
+          </button>
           <button onClick={() => decreaseItem(item.id)}>-</button>
         </div>
       </div>

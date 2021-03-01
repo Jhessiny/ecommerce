@@ -6,13 +6,21 @@ const Product = ({ name, price, available, addItemToCart, id }) => {
       <div className="product-card__img"></div>
       <div className="product-card__info">
         <p className="product-card__info__title">{name}</p>
-        <p>
-          R$ {price} <span>- {available} left</span>
-        </p>
+        {available > 0 ? (
+          <p>
+            R$ {price} <span>- {available} left</span>
+          </p>
+        ) : (
+          <p>Out of stock.</p>
+        )}
       </div>
-      <div onClick={() => addItemToCart(id)} className="product-card__button">
+      <button
+        onClick={() => addItemToCart(id)}
+        className="product-card__button"
+        disabled={available < 1}
+      >
         Buy
-      </div>
+      </button>
     </ProductCard>
   );
 };

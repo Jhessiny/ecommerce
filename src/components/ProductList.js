@@ -29,6 +29,9 @@ const ProductList = () => {
   const addItemToCart = (id) => {
     const newItems = [...cartItems];
     const addedProduct = products.filter((item) => item.id == id);
+    if (addedProduct.available <= 0) {
+      return;
+    }
     let alreadyExists = false;
     newItems.forEach((item) => {
       if (item.id === id) {
@@ -40,6 +43,12 @@ const ProductList = () => {
       let newItem = { ...addedProduct[0], amount: 1 };
       newItems.push(newItem);
     }
+    const availableProducts = [...products];
+    let decreasedAvailableProduct = availableProducts.filter(
+      (item) => item.id === id
+    );
+    decreasedAvailableProduct[0].available -= 1;
+    setProducts(availableProducts);
     setCartItems(newItems);
   };
 

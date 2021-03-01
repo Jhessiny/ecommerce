@@ -52,11 +52,17 @@ export const CartAside = styled.div`
           display: flex;
           flex-direction: column;
           width: 10%;
+          margin-top: -1px;
+          margin-right: -1px;
           * {
-            height: 50%;
+            height: calc(50% + 3px);
             width: 100%;
             border: 1px solid #bbb;
             background-color: transparent;
+            border-radius: 0;
+          }
+          button:nth-child(2) {
+            margin-top: -1px;
           }
         }
       }

@@ -30,6 +30,7 @@ export const ProductCard = styled.div`
     background-color: #444;
     color: #eee;
     padding: 1.2rem;
+    border: none;
     position: absolute;
     bottom: 0;
     width: 100%;

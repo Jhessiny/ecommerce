@@ -50,6 +50,38 @@ html{
         flex-wrap: wrap;
         justify-content: space-between;
         }   
+        .ordering-modal-background{
+            background-color: #cccc;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            .ordering-modal{
+                background-color: #f0f0f0;
+                position: absolute;
+                top: 30%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 15rem;
+                width: 28rem;
+                padding: 1rem;
+                text-align: center;
+                font-size: 2rem;
+                color: green;
+                p{
+                    margin-top: 3rem;
+                }
+                .close-modal{
+                    border: none;
+                    background-color: transparent;
+                    float: right;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    
+                }
+            }
+        }
        
     }
 }
