@@ -89,12 +89,12 @@ const Cart = () => {
   const verifyDiscountCode = (e) => {
     setDiscountMessage("");
     e.preventDefault();
-    if (!discountInput) {
-      setDiscountMessage("Input is empty. Type a voucher code.");
-      return;
-    }
     if (!cartItems.length) {
       setDiscountMessage("Cart is empty.");
+      return;
+    }
+    if (!discountInput) {
+      setDiscountMessage("Input is empty. Type a voucher code.");
       return;
     }
     axios
