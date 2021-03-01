@@ -85,7 +85,10 @@ const Cart = () => {
   const verifyDiscountCode = (e) => {
     setDiscountMessage("");
     e.preventDefault();
-    console.log("checking code");
+    if (!discountInput) {
+      setDiscountMessage("Input is empty. Type a voucher code.");
+      return;
+    }
     axios
       .get("https://shielded-wildwood-82973.herokuapp.com/vouchers.json")
       .then((data) => {
@@ -93,12 +96,20 @@ const Cart = () => {
         const voucher = vouchers.filter(
           (voucher) => voucher.code === discountInput
         );
+        if (!voucher[0]) {
+          setDiscountMessage("Invalid voucher.");
+          return;
+        }
         setVoucher(voucher[0]);
         setDiscountMessage("Voucher applyed successfully.");
         calcPrice();
         console.log(discount);
       })
-      .catch((err) => setDiscountMessage(err.message));
+      .catch((err) =>
+        setDiscountMessage(
+          "Couldn't get the voucher from server. try again in a few minutes."
+        )
+      );
   };
 
   useEffect(() => {
@@ -145,16 +156,19 @@ const Cart = () => {
                 decreaseItem={decreaseItem}
               />
             ))}
-            <form action="">
-              <input
-                type="text"
-                placeholder="Discount code"
-                value={discountInput}
-                onChange={(e) => setDiscountInput(e.target.value)}
-              />
-              <button onClick={verifyDiscountCode}>Apply</button>
-            </form>
-            <p className="discount-msg">{discountMessage}</p>
+            <div className="discount-form">
+              <form action="">
+                <input
+                  type="text"
+                  placeholder="Discount code"
+                  value={discountInput}
+                  onChange={(e) => setDiscountInput(e.target.value)}
+                />
+                <button onClick={verifyDiscountCode}>Apply</button>
+              </form>
+              <p className="discount-msg">{discountMessage}</p>
+            </div>
+
             <div className="cart__summary">
               <div className="cart__summary__item">
                 <p>Subtotal</p>

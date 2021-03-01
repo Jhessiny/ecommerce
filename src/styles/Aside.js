@@ -73,11 +73,13 @@ export const CartAside = styled.div`
         align-items: center;
       }
     }
-
+    .discount-form {
+      padding: 0.5rem 0 1.5rem 0;
+    }
     form {
       display: flex;
       justify-content: space-between;
-      padding: 0.5rem 0 1.5rem 0;
+
       input {
         width: 75%;
         border-radius: 0.3rem;
@@ -99,6 +101,10 @@ export const CartAside = styled.div`
           background-color: #222;
         }
       }
+    }
+    .discount-msg {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
     }
 
     .cart__summary__item {
