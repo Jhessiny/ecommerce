@@ -55,8 +55,10 @@ const Cart = () => {
   const calcShipping = () => {
     if (cartItems.length < 1) {
       setShipping(0);
-    } else if (voucher.type === "shipping" || subTotal > 400) {
-      setShipping(0);
+    } else if (voucher) {
+      if (voucher.type === "shipping" || subTotal > 400) {
+        setShipping(0);
+      }
     } else {
       let weight = cartItems.reduce((a, c) => a + c.amount, 0);
       if (weight <= 10) {
@@ -72,10 +74,14 @@ const Cart = () => {
     const total = cartItems.reduce((a, c) => a + c.price * c.amount, 0);
     setSubtotal(total);
 
-    if (voucher.type === "percentual") {
-      setDiscount((voucher.amount / 100) * total);
-    } else if (voucher.type === "fixed") {
-      setDiscount(voucher.amount);
+    if (voucher) {
+      if (voucher.type === "percentual") {
+        setDiscount((voucher.amount / 100) * total);
+      } else if (voucher.type === "fixed") {
+        setDiscount(voucher.amount);
+      } else if (!voucher) {
+        setDiscount(0);
+      }
     }
     calcShipping();
     const checkingTotalPrice = subTotal + shipping - discount;
@@ -88,6 +94,8 @@ const Cart = () => {
 
   const verifyDiscountCode = (e) => {
     setDiscountMessage("");
+    setVoucher(null);
+    setDiscount(0);
     e.preventDefault();
     if (!cartItems.length) {
       setDiscountMessage("Cart is empty.");
@@ -124,8 +132,13 @@ const Cart = () => {
     setSubtotal(total);
     calcShipping();
     calcPrice();
-    setTotalPrice(subTotal + shipping - discount);
-  }, [cartItems, calcPrice]);
+    const checkingTotalPrice = subTotal + shipping - discount;
+    if (checkingTotalPrice < 0) {
+      setTotalPrice(0);
+    } else {
+      setTotalPrice(checkingTotalPrice);
+    }
+  }, [cartItems, calcPrice, shipping, discount]);
 
   const checkoutHandler = (e) => {
     e.preventDefault();
