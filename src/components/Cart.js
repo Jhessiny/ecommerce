@@ -71,15 +71,19 @@ const Cart = () => {
   const calcPrice = () => {
     const total = cartItems.reduce((a, c) => a + c.price * c.amount, 0);
     setSubtotal(total);
-    console.log(voucher.type);
+
     if (voucher.type === "percentual") {
       setDiscount((voucher.amount / 100) * total);
-      console.log((voucher.amount / 100) * total);
     } else if (voucher.type === "fixed") {
       setDiscount(voucher.amount);
     }
     calcShipping();
-    setTotalPrice(subTotal + shipping - discount);
+    const checkingTotalPrice = subTotal + shipping - discount;
+    if (checkingTotalPrice < 0) {
+      setTotalPrice(0);
+    } else {
+      setTotalPrice(checkingTotalPrice);
+    }
   };
 
   const verifyDiscountCode = (e) => {
@@ -87,6 +91,10 @@ const Cart = () => {
     e.preventDefault();
     if (!discountInput) {
       setDiscountMessage("Input is empty. Type a voucher code.");
+      return;
+    }
+    if (!cartItems.length) {
+      setDiscountMessage("Cart is empty.");
       return;
     }
     axios
@@ -103,7 +111,6 @@ const Cart = () => {
         setVoucher(voucher[0]);
         setDiscountMessage("Voucher applyed successfully.");
         calcPrice();
-        console.log(discount);
       })
       .catch((err) =>
         setDiscountMessage(
