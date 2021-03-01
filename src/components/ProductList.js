@@ -2,6 +2,7 @@ import Product from "./Product";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { ProductsContext } from "../productsContext";
+import { Spinner } from "../styles/Spinner";
 
 const ProductList = () => {
   const { products, setProducts } = useContext(ProductsContext);
@@ -55,7 +56,7 @@ const ProductList = () => {
   return (
     <div className="products-list">
       {!products && isFetching ? (
-        <p>Loading</p>
+        <Spinner>Loading...</Spinner>
       ) : !products && !isFetching ? (
         <p>
           Sorry! Cannot get the products from server! Try again in a few

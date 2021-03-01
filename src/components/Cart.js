@@ -14,7 +14,7 @@ const Cart = () => {
   const [voucher, setVoucher] = useState({});
   const [discountInput, setDiscountInput] = useState("");
   const [discountMessage, setDiscountMessage] = useState("");
-  const [isOrdering, setIsOrdering] = useState(true);
+  const [isOrdering, setIsOrdering] = useState(false);
 
   const increaseItem = (id) => {
     const newCartItems = [...cartItems];
