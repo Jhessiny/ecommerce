@@ -15,6 +15,7 @@ const Product = ({ name, price, available, addItemToCart, id }) => {
         )}
       </div>
       <button
+        name="buy"
         onClick={() => addItemToCart(id)}
         className="product-card__button"
         disabled={available < 1}

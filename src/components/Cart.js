@@ -11,7 +11,7 @@ const Cart = () => {
   const [subTotal, setSubtotal] = useState(0);
   const [shipping, setShipping] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const [voucher, setVoucher] = useState({});
+  const [voucher, setVoucher] = useState(null);
   const [discountInput, setDiscountInput] = useState("");
   const [discountMessage, setDiscountMessage] = useState("");
   const [isOrdering, setIsOrdering] = useState(false);
@@ -54,8 +54,10 @@ const Cart = () => {
 
   const calcShipping = () => {
     if (cartItems.length < 1) {
+      console.log(shipping);
       setShipping(0);
     } else if (voucher) {
+      console.log(voucher);
       if (voucher.type === "shipping" || subTotal > 400) {
         setShipping(0);
       }
@@ -63,9 +65,11 @@ const Cart = () => {
       let weight = cartItems.reduce((a, c) => a + c.amount, 0);
       if (weight <= 10) {
         setShipping(30);
+        console.log("lowweight");
       } else {
         let additionalShippingPrice = 7 * Math.floor((weight - 10) / 5);
         setShipping(30 + additionalShippingPrice);
+        console.log("mediumweight");
       }
     }
   };
@@ -106,9 +110,9 @@ const Cart = () => {
       return;
     }
     axios
-      .get("https://shielded-wildwood-82973.herokuapp.com/vouchers.json")
+      .get("https://6041700df34cf600173c9dba.mockapi.io/vouchers")
       .then((data) => {
-        const vouchers = data.data.vouchers;
+        const vouchers = data.data;
         const voucher = vouchers.filter(
           (voucher) => voucher.code === discountInput
         );
@@ -131,6 +135,7 @@ const Cart = () => {
     const total = cartItems.reduce((a, c) => a + c.price * c.amount, 0);
     setSubtotal(total);
     calcShipping();
+
     calcPrice();
     const checkingTotalPrice = subTotal + shipping - discount;
     if (checkingTotalPrice < 0) {

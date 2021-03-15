@@ -1,6 +1,6 @@
 import Product from "./Product";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProductsContext } from "../productsContext";
 import { Spinner } from "../styles/Spinner";
 
@@ -12,10 +12,10 @@ const ProductList = () => {
   const fetchProducts = () => {
     setIsFetching(true);
     axios
-      .get("https://shielded-wildwood-82973.herokuapp.com/products.json")
+      .get("https://6041700df34cf600173c9dba.mockapi.io/products")
       .then((data) => {
         if (data) {
-          setProducts(data.data.products);
+          setProducts(data.data);
         } else {
           setProducts(null);
         }
@@ -54,7 +54,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className="products-list">
+    <div className="products-list" aria-hidden="true">
       {!products && isFetching ? (
         <Spinner>Loading...</Spinner>
       ) : !products && !isFetching ? (
